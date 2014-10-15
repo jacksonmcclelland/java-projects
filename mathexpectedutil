@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mathproject;
+import java.util.Scanner;
+/**
+ *
+ * @author jacmccl
+ */
+public class MathProject {
+    public static void start(){
+        System.out.println("Math Project - Expected Utility as applied to a spinner game.\n*******************************************");
+        System.out.println("Let's play a game.");
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        start();
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many values are there on the spinner? >");
+        int valuenumber = input.nextInt();
+        double[] spinnervalues = new double[valuenumber];
+        
+        //spinner values
+        for (int vn=0; vn<valuenumber; vn+=1){
+            Scanner svn = new Scanner(System.in);
+            int uvn = vn+1;
+            System.out.print("Value ($) of spinner option #"+uvn+": >");
+            double nvn = svn.nextFloat();
+            spinnervalues[vn] = nvn;
+        }
+        
+        //probabilities
+        double[] spinnerprobs = new double[valuenumber];
+        for (int vn = 0; vn<valuenumber; vn+=1){
+            Scanner svn = new Scanner(System.in);
+            int uvn = vn+1;
+            System.out.print("Probability of occuring for value #"+uvn+": >");
+            double nvn = svn.nextFloat();
+            spinnerprobs[vn] = nvn;
+        }
+        System.out.println();
+        System.out.println("Calculations:");
+        System.out.println("*******************************************");
+        System.out.print("Multiplication: ");
+        
+        //multiplying spinnervalues[n] by spinnerprobs[n]
+        double[] multipliedvalues = new double[valuenumber];
+        for (int vn = 0; vn<valuenumber; vn+=1){
+            double multiplied = spinnervalues[vn]*spinnerprobs[vn];
+            multipliedvalues[vn] = multiplied;
+            System.out.print(spinnervalues[vn]+" * "+spinnerprobs[vn]+", ");
+        }
+        
+        //printing it out visually
+        System.out.println();
+        System.out.print("Addition: ");
+        for (int vn = 0; vn<valuenumber; vn+=1){
+            System.out.print(multipliedvalues[vn]+" + ");
+        }
+        
+        System.out.println();
+        System.out.println("computing...");
+        
+        //adding multiplied values now stored in multipliedvalues;
+        double sum=0;
+        for (int vn = 0; vn<valuenumber; vn+=1){
+            sum = sum + multipliedvalues[vn];
+        }
+        System.out.println();
+        System.out.println("The expected value is: $"+sum);
+        
+        if (sum > 0){
+            System.out.println("It is profitable to play the game!");
+            Scanner numplays = new Scanner(System.in);
+            System.out.print("Calculate profit for this many games: >");
+            int nplays = numplays.nextInt();
+            int gameprofit = (int) (sum*nplays);
+            System.out.println("In "+nplays+" plays, you will make $"+gameprofit+"!");
+            if (gameprofit > 20){
+                System.out.println("Racking in the cash!");
+            }
+        } else {
+            System.out.println("Don't play the game - it isn't profitable. :)");
+        }
+        //end of code
+    }
+    
+}
