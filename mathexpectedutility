@@ -39,7 +39,7 @@ public class MathProject {
         for (int vn = 0; vn<valuenumber; vn+=1){
             Scanner svn = new Scanner(System.in);
             int uvn = vn+1;
-            System.out.print("Probability of occuring for value #"+uvn+": >");
+            System.out.print("Probability of occurring for value #"+uvn+": >");
             double nvn = svn.nextFloat();
             spinnerprobs[vn] = nvn;
         }
@@ -84,6 +84,8 @@ public class MathProject {
             if (gameprofit > 20){
                 System.out.println("Racking in the cash!");
             }
+        } else if (sum == 0){
+            System.out.println("You will neither win nor lose money from this game.");
         } else {
             System.out.println("Don't play the game - it isn't profitable. :)");
         }
